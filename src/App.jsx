@@ -5,6 +5,8 @@ import Venue from "./components/Venue"
 import ThankYou from "./components/ThankYou"
 import AudioButton from "./components/AudioButton"
 import {useRef,useState} from "react";
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function App() {
     const [phase, setPhase] = useState("closed");
@@ -36,7 +38,8 @@ export default function App() {
             
 
             </div>
-
+            <SpeedInsights/>
+        <Analytics />
         </main>
     )
 }
