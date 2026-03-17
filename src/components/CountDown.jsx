@@ -1,6 +1,6 @@
 import useCountdown from "../hooks/useCountdown"
 
-export default function Countdown({ target }) {
+export default function CountDown({ target }) {
 
     const time = useCountdown(target)
 

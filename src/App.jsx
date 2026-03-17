@@ -1,6 +1,6 @@
 import HeroVideo from "./components/HeroVideo"
 import ScratchDate from "./components/ScratchDate"
-import Countdown from "./components/Countdown"
+import CountDown from "./components/CountDown"
 import Venue from "./components/Venue"
 import ThankYou from "./components/ThankYou"
 import AudioButton from "./components/AudioButton"
@@ -27,7 +27,7 @@ export default function App() {
                 <>
              <ScratchDate />
 
-            <Countdown target="2026-04-09T16:00:00" />
+            <CountDown target="2026-04-09T16:00:00" />
 
             <Venue />
 
