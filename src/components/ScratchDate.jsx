@@ -134,6 +134,7 @@ const ScratchCircle = memo(function ScratchCircle({ text, onComplete }) {
 
 export default function ScratchDate({ content = {} }) {
     const [completed, setCompleted] = useState(0);
+    const [showScrollCta, setShowScrollCta] = useState(false);
     const sectionRef = useRef(null);
     const dateParts = content.dateParts ?? ["9", "April", "2026"];
     const hint = content.hint ?? "Scratch to discover the date";
@@ -146,6 +147,7 @@ export default function ScratchDate({ content = {} }) {
     }, []);
 
     const allRevealed = completed === dateParts.length;
+    const popperDuration = 2000;
 
     // 🔒 Lock scroll when section fully in view
     useEffect(() => {
@@ -162,24 +164,27 @@ export default function ScratchDate({ content = {} }) {
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [allRevealed]);
+    }, [allRevealed, popperDuration]);
 
     // 🔓 Unlock scroll after reveal
     useEffect(() => {
         if (allRevealed) {
             const timer = setTimeout(() => {
                 document.body.style.overflow = "";
-            }, 2000);
+                setShowScrollCta(true);
+            }, popperDuration);
 
             return () => clearTimeout(timer);
         }
+
+        setShowScrollCta(false);
     }, [allRevealed]);
 
     // 🎉 Confetti
     useEffect(() => {
         if (!allRevealed) return;
 
-        const duration = 2000;
+        const duration = popperDuration;
         const end = Date.now() + duration;
 
         const colors = ["#5C2018"];
@@ -207,7 +212,7 @@ export default function ScratchDate({ content = {} }) {
         };
 
         frame();
-    }, [allRevealed]);
+    }, [allRevealed, popperDuration]);
 
     return (
         <section
@@ -243,7 +248,7 @@ export default function ScratchDate({ content = {} }) {
                 )}
             </AnimatePresence>
 
-              {allRevealed && ( <motion.div
+              {showScrollCta && ( <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
