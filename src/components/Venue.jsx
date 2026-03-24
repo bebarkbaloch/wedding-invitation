@@ -1,7 +1,14 @@
 import { motion } from "framer-motion"
 import React from "react";
 
-export default function Venue() {
+export default function Venue({ content = {} }) {
+    const intro = content.intro ?? "The celebration will take place at";
+    const name = content.name ?? "The Grand Marquee";
+    const addressLine1 = content.addressLine1 ?? "CL-7,14 Fatima Jinnah Rd, Civil Lines";
+    const addressLine2 = content.addressLine2 ?? "Karachi Cantonment, Karachi";
+    const dateText = content.dateText ?? "April 09, 2026";
+    const note = content.note ?? "Reception to Follow";
+
     return (
         <section className="bg-white flex flex-col items-center justify-start pt-16 pb-20 px-6">
 
@@ -14,7 +21,7 @@ export default function Venue() {
                 className="text-center mb-6"
             >
                 <p className="text-sm tracking-[0.2em] uppercase text-primary">
-                    The celebration will take place at
+                    {intro}
                 </p>
             </motion.div>
 
@@ -42,7 +49,7 @@ export default function Venue() {
                 viewport={{ once: true }}
                 className="text-4xl md:text-5xl text-primary text-center mb-4"
             >
-                The Grand Marquee
+                {name}
             </motion.h2>
 
             {/* Address */}
@@ -54,11 +61,11 @@ export default function Venue() {
                 className="text-center mb-6"
             >
                 <p className="text-xs tracking-[0.2em] uppercase text-primary">
-                    CL-7,14 Fatima Jinnah Rd, Civil Lines
+                    {addressLine1}
                 </p>
 
                 <p className="text-xs tracking-[0.2em] uppercase text-primary">
-                     Karachi Cantonment, Karachi
+                     {addressLine2}
                 </p>
             </motion.div>
 
@@ -70,7 +77,7 @@ export default function Venue() {
                 viewport={{ once: true }}
                 className="text-2xl md:text-3xl text-primary mb-4"
             >
-                April 09, 2026
+                {dateText}
             </motion.p>
 
             {/* Reception text */}
@@ -81,7 +88,7 @@ export default function Venue() {
                 viewport={{ once: true }}
                 className="text-3xl text-primary font-serif"
             >
-                Reception to Follow
+                {note}
             </motion.p>
 
         </section>

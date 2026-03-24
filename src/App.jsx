@@ -5,12 +5,16 @@ import Venue from "./components/Venue"
 import ThankYou from "./components/ThankYou"
 import AudioButton from "./components/AudioButton"
 import {useRef,useState} from "react";
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { useLocation } from "react-router-dom";
+import invitationText from "./content/invitationText.json";
+
 
 export default function App() {
     const [phase, setPhase] = useState("closed");
     const audioRef = useRef(null)
+    const { pathname } = useLocation();
+    const eventKey = pathname.includes("baraat") ? "baraat" : "valima";
+    const content = invitationText.events[eventKey];
 
     const playAudio = () => {
         audioRef.current?.play().catch(() => {})
@@ -23,23 +27,30 @@ export default function App() {
 
             <AudioButton audioRef={audioRef} />
 
-            <HeroVideo onPlay={playAudio} phase={phase} setPhase={setPhase} />
+            <HeroVideo
+                onPlay={playAudio}
+                phase={phase}
+                setPhase={setPhase}
+                content={content.hero}
+            />
          
              {phase === "ended" && (
                 <>
-             <ScratchDate />
+             <ScratchDate content={content.scratchDate} />
 
-            <CountDown target="2026-04-09T16:00:00" />
+            <CountDown
+                target={content.countdown.target}
+                title={content.countdown.title}
+            />
 
-            <Venue />
+            <Venue content={content.venue} />
 
-            <ThankYou />
+            <ThankYou content={content.thankYou} />
              </>)}
             
 
             </div>
-            <SpeedInsights/>
-        <Analytics />
+            
         </main>
     )
 }

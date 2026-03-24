@@ -1,6 +1,6 @@
 import useCountdown from "../hooks/useCountdown"
 
-export default function CountDown({ target }) {
+export default function CountDown({ target, title = "Countdown" }) {
 
     const time = useCountdown(target)
 
@@ -8,7 +8,7 @@ export default function CountDown({ target }) {
         <section className="py-24 text-center">
 
             <h2 className="text-5xl text-primary mb-10">
-                Countdown
+                {title}
             </h2>
 
             <div className="flex justify-center gap-6">

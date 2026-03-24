@@ -2,7 +2,7 @@ import { Howl } from "howler"
 import React, { useState } from "react"
 
 const sound = new Howl({
-    src: ["/assets/intro-music.mp3"],
+    src: ["/assets/New_Wedding_Nasheed_Music.mp3"],
     loop: true
 })
 

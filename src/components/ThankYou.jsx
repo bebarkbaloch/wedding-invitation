@@ -1,8 +1,13 @@
 import { motion } from "framer-motion"
 
-export default function ThankYou() {
+export default function ThankYou({ content = {} }) {
+    const title = content.title ?? "Thank You";
+    const message = content.message ?? "For joining us on this special day. Your presence is the best gift we could receive.";
+    const signature = content.signature ?? "Bebark & Hafsa";
+    const caption = content.caption ?? "developed by Bebark";
+
     return (
-        <section className="py-20 bg-white flex items-center justify-center px-6">
+        <section className="py-20 bg-white flex items-center justify-center  flex-col px-6">
 
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -25,7 +30,7 @@ export default function ThankYou() {
                             viewport={{ once: true }}
                             className="text-4xl text-primary mb-6"
                         >
-                            Thank You
+                            {title}
                         </motion.h2>
 
                         <motion.p
@@ -35,7 +40,7 @@ export default function ThankYou() {
                             viewport={{ once: true }}
                             className="text-base text-primary mb-6 leading-relaxed"
                         >
-                            For joining us on this special day. Your presence is the best gift we could receive.
+                            {message}
                         </motion.p>
 
                         <motion.p
@@ -45,7 +50,7 @@ export default function ThankYou() {
                             viewport={{ once: true }}
                             className="text-2xl text-primary font-serif"
                         >
-                            Bebark & Hafsa
+                            {signature}
                         </motion.p>
 
                     </div>
@@ -53,6 +58,10 @@ export default function ThankYou() {
                 </div>
 
             </motion.div>
+
+            <p className="text-xs text-primary/70 text-center mt-6 w-full">
+                {caption}
+            </p>
 
         </section>
     )

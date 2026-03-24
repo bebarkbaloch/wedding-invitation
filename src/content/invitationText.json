@@ -1,0 +1,81 @@
+{
+  "routes": {
+    "homeRedirect": "/valima",
+    "valima": "/valima",
+    "baraat": "/baraat"
+  },
+  "events": {
+    "valima": {
+      "hero": {
+        "bismillah": "بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "inviteLine": "You are cordially invited",
+        "groomName": "Bebark",
+        "brideName": "Hafsa",
+        "description": "We would like to invite you to celebrate with us the valima ceremony. It would be an honor to have you present at this important moment.",
+        "tapToOpen": "Tap to open",
+        "scroll": "Scroll"
+      },
+      "scratchDate": {
+        "hint": "Scratch to discover the date",
+        "title": "Reveal",
+        "dateParts": ["9", "April", "2026"],
+        "revealedLine": "We're getting married!",
+        "scroll": "Scroll"
+      },
+      "countdown": {
+        "title": "Countdown",
+        "target": "2026-04-09T16:00:00"
+      },
+      "venue": {
+        "intro": "The celebration will take place at",
+        "name": "The Grand Marquee",
+        "addressLine1": "CL-7,14 Fatima Jinnah Rd, Civil Lines",
+        "addressLine2": "Karachi Cantonment, Karachi",
+        "dateText": "April 09, 2026",
+        "note": "Reception to Follow"
+      },
+      "thankYou": {
+        "title": "Thank You",
+        "message": "For joining us on this special day. Your presence is the best gift we could receive.",
+        "signature": "Bebark & Hafsa",
+        "caption": "developed by Bebark"
+      }
+    },
+    "baraat": {
+      "hero": {
+        "bismillah": "بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "inviteLine": "You are cordially invited",
+        "groomName": "Hafsa",
+        "brideName": "Bebark",
+        "description": "We would like to invite you to celebrate with us the baraat ceremony. It would be an honor to have you present at this important moment.",
+        "tapToOpen": "Tap to open",
+        "scroll": "Scroll"
+      },
+      "scratchDate": {
+        "hint": "Scratch to discover the date",
+        "title": "Reveal",
+        "dateParts": ["7", "April", "2026"],
+        "revealedLine": "We're getting married!",
+        "scroll": "Scroll"
+      },
+      "countdown": {
+        "title": "Countdown",
+        "target": "2026-04-07T16:00:00"
+      },
+      "venue": {
+        "intro": "The baraat ceremony will take place at",
+        "name": "Rex Banquet",
+        "addressLine1": "Sharah-e-Sher Shah Suri, opposite Saima Pari Mall",
+        "addressLine2": "Block D North Nazimabad Town, Karachi",
+        "dateText": "April 07, 2026",
+        "note": "Reception to Follow"
+      },
+      "thankYou": {
+        "title": "Thank You",
+        "message": "For joining us on this special day. Your presence is the best gift we could receive.",
+        "signature": "Hafsa & Bebark",
+        "caption": "developed by Bebark"
+      }
+    }
+  }
+}

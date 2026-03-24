@@ -1,8 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 
-export default function HeroVideo({ onPlay,phase, setPhase }) {
+export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
     const videoRef = useRef(null);
+    const bismillah = content.bismillah ?? "بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ";
+    const inviteLine = content.inviteLine ?? "You are cordially invited";
+    const groomName = content.groomName ?? "Bebark";
+    const brideName = content.brideName ?? "Hafsa";
+    const description = content.description ?? "We would like to invite you to celebrate with us the valima ceremony. It would be an honor to have you present at this important moment.";
+    const tapToOpen = content.tapToOpen ?? "Tap to open";
+    const scrollText = content.scroll ?? "Scroll";
 
     const handleTap = () => {
         if (phase !== "closed") return;
@@ -31,19 +38,21 @@ export default function HeroVideo({ onPlay,phase, setPhase }) {
                 className="text-primary absolute inset-0 flex items-center flex-col gap-3 justify-center z-2"
             >
                 <p className="uppercase text-center tracking-[0.3em] text-xs mb-4 font-lora max-w-[40%]">
-                    You are cordially invited
+                    {bismillah}
+                </p>
+                <p className="uppercase text-center tracking-[0.3em] text-xs mb-4 font-lora max-w-[45%]">
+                    {inviteLine}
                 </p>
                 <div className="text-center text-primary">
 
-                    <h1 className="text-7xl font-great-vibes">Bebark</h1>
+                    <h1 className="text-7xl font-great-vibes">{groomName}</h1>
                     <span className="text-3xl font-great-vibes">&amp;</span>
-                    <h1 className="text-7xl font-great-vibes">Hafsa</h1>
+                    <h1 className="text-7xl font-great-vibes">{brideName}</h1>
 
 
                 </div>
-                <p className="font-lora text-[11px] md:text-sm tracking-[0.12em] uppercase leading-relaxed text-center max-w-[60%] md:max-w-[70%] lg:max-w-[60%]"
-                >We would like to invite you to celebrate with us the most special
-                    day of our lives. It would be an honor to have you present at this important moment.</p>
+                <p className="font-lora text-[11px] md:text-sm tracking-[0.12em] uppercase leading-relaxed text-center max-w-[65%] md:max-w-[70%] lg:max-w-[60%]"
+                >{description}</p>
             </motion.div>
 
             {/* LAYER 2: Open curtain image — shown after video ends */}
@@ -134,7 +143,7 @@ export default function HeroVideo({ onPlay,phase, setPhase }) {
                                 className="text-xs uppercase tracking-[0.3em] drop-shadow-lg"
                                 style={{ color: "rgba(255,255,255,0.8)" }}
                             >
-                Tap to open
+                                {tapToOpen}
               </span>
                         </div>
                     </motion.div>
@@ -178,7 +187,7 @@ export default function HeroVideo({ onPlay,phase, setPhase }) {
             </motion.div>
 
             <span className="text-[10px] tracking-[0.3em] mt-2 text-primary/70 uppercase">
-                Scroll
+                {scrollText}
             </span>
         </motion.div>
     )}

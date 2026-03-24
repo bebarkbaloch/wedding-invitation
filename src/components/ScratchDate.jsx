@@ -132,15 +132,20 @@ const ScratchCircle = memo(function ScratchCircle({ text, onComplete }) {
 });
 
 
-export default function ScratchDate() {
+export default function ScratchDate({ content = {} }) {
     const [completed, setCompleted] = useState(0);
     const sectionRef = useRef(null);
+    const dateParts = content.dateParts ?? ["9", "April", "2026"];
+    const hint = content.hint ?? "Scratch to discover the date";
+    const title = content.title ?? "Reveal";
+    const revealedLine = content.revealedLine ?? "We're getting married!";
+    const scrollText = content.scroll ?? "Scroll";
 
     const handleCircleComplete = useCallback(() => {
         setCompleted((prev) => prev + 1);
     }, []);
 
-    const allRevealed = completed === 3;
+    const allRevealed = completed === dateParts.length;
 
     // 🔒 Lock scroll when section fully in view
     useEffect(() => {
@@ -210,17 +215,17 @@ export default function ScratchDate() {
             className="relative py-24 bg-[#faf8f5] flex flex-col items-center justify-center text-center h-screen"
         >
             <p className="mb-6 text-xs tracking-wide text-[rgba(92,32,24,0.6)] font-lora">
-                Scratch to discover the date
+                {hint}
             </p>
 
             <h2 className="text-5xl text-primary mb-12 font-great-vibes">
-                Reveal
+                {title}
             </h2>
 
             <div className="flex justify-center gap-6 font-lora">
-                <ScratchCircle text="9" onComplete={handleCircleComplete} />
-                <ScratchCircle text="April" onComplete={handleCircleComplete} />
-                <ScratchCircle text="2026" onComplete={handleCircleComplete} />
+                {dateParts.map((part) => (
+                    <ScratchCircle key={part} text={part} onComplete={handleCircleComplete} />
+                ))}
             </div>
 
             <AnimatePresence>
@@ -232,11 +237,49 @@ export default function ScratchDate() {
                         className="mt-12"
                     >
                         <p className="text-2xl text-[#5C2018] font-script">
-                            We're getting married!
+                            {revealedLine}
                         </p>
                     </motion.div>
                 )}
             </AnimatePresence>
+
+              {allRevealed && ( <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ delay: 0.3, duration: 0.6 }}
+                        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center cursor-pointer"
+                        onClick={() => {
+                            window.scrollTo({
+                                top: window.innerHeight,
+                                behavior: "smooth",
+                            });
+                        }}
+                    >
+                        {/* Arrow animation */}
+                        <motion.div
+                            animate={{ y: [0, 10, 0] }}
+                            transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                            className="text-primary"
+                        >
+                            <svg
+                                width="28"
+                                height="28"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            >
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </motion.div>
+            
+                        <span className="text-[10px] tracking-[0.3em] mt-2 text-primary/70 uppercase">
+                            {scrollText}
+                        </span>
+                    </motion.div> )}
         </section>
     );
 }
