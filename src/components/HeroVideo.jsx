@@ -34,7 +34,7 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: phase === "closed" ? 0 : 1 }}
-                transition={{ delay: phase === "playing" ? 1.5 : 0, duration: 0.8 }}
+                transition={{ delay: phase === "playing" ? 2 : 0, duration: 0.9 }}
                 className="text-primary absolute inset-0 flex items-center flex-col gap-3 justify-center z-2"
             >
                 <p className="uppercase text-center tracking-[0.3em] text-xs mb-4 font-lora max-w-[40%]">
@@ -69,7 +69,7 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
             <AnimatePresence>
             <motion.video
                 ref={videoRef}
-                src="/curtain-video.mp4"
+                src="/curtain-video-optimized.mp4"
                 muted
                 playsInline
                 onEnded={handleVideoEnd}
