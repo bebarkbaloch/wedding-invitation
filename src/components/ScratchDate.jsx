@@ -217,7 +217,7 @@ export default function ScratchDate({ content = {} }) {
     return (
         <section
             ref={sectionRef}
-            className="relative py-24 bg-[#faf8f5] flex flex-col items-center justify-center text-center h-screen"
+            className="relative py-24 bg-[#faf8f5] flex flex-col items-center justify-center text-center h-[100dvh]"
         >
             <p className="mb-6 text-xs tracking-wide text-[rgba(92,32,24,0.6)] font-lora">
                 {hint}
@@ -255,10 +255,7 @@ export default function ScratchDate({ content = {} }) {
                         transition={{ delay: 0.3, duration: 0.6 }}
                         className="absolute bottom-12 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center cursor-pointer"
                         onClick={() => {
-                            window.scrollTo({
-                                top: window.innerHeight,
-                                behavior: "smooth",
-                            });
+                            sectionRef.current?.nextElementSibling?.scrollIntoView({ behavior: "smooth" });
                         }}
                     >
                         {/* Arrow animation */}
