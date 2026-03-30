@@ -46,7 +46,7 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {}, isMehn
                 <p className="uppercase text-center tracking-[0.3em] text-xs mb-4  font-lora max-w-[40%]">
                     {bismillah}
                 </p>
-                <p className={`uppercase text-center tracking-[0.3em] text-xs mb-4 font-lora max-w-[${isMehndi ? "41%" : "45%"}]`}>
+                <p className={`uppercase text-center tracking-[0.3em] text-xs mb-4 font-lora ${isMehndi ? "max-w-[41%]" : "max-w-[45%]"}`}>
                     {inviteLine}
                 </p>
                 <div className="text-center text-primary">
