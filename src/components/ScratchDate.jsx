@@ -1,9 +1,8 @@
 import {useEffect,useCallback, useRef, useState,memo} from "react"
-import useScratch from "../hooks/useScratch"
 import {motion,AnimatePresence} from "framer-motion";
 import confetti from "canvas-confetti";
 
-const ScratchCircle = memo(function ScratchCircle({ text, onComplete }) {
+const ScratchCircle = memo(function ScratchCircle({ text, onComplete, overlayImage, circleBg }) {
     const canvasRef = useRef(null);
     const isDrawing = useRef(false);
     const isDone = useRef(false);
@@ -16,7 +15,7 @@ const ScratchCircle = memo(function ScratchCircle({ text, onComplete }) {
         const ctx = canvas.getContext("2d");
 
         const img = new Image();
-        img.src = "/scratch-gold-DQrdz0lH.png";
+        img.src = overlayImage ?? "/scratch-gold-DQrdz0lH.png";
 
         img.onload = () => {
             ctx.globalCompositeOperation = "source-over";
@@ -113,10 +112,10 @@ const ScratchCircle = memo(function ScratchCircle({ text, onComplete }) {
             canvas.removeEventListener("touchmove", move);
             canvas.removeEventListener("touchend", end);
         };
-    }, [onComplete]);
+    }, [onComplete, overlayImage]);
 
     return (
-        <div className="relative w-[80px] h-[80px] bg-white rounded-full overflow-hidden">
+        <div className="relative w-[80px] h-[80px] rounded-full overflow-hidden" style={{ backgroundColor: circleBg ?? "#ffffff" }}>
             <div className="absolute inset-0 flex items-center justify-center text-lg text-primary">
                 {text}
             </div>
@@ -141,6 +140,12 @@ export default function ScratchDate({ content = {} }) {
     const title = content.title ?? "Reveal";
     const revealedLine = content.revealedLine ?? "We're getting married!";
     const scrollText = content.scroll ?? "Scroll";
+    const sectionBg = content.theme?.sectionBg ?? "#faf8f5";
+    const hintColor = content.theme?.hintColor ?? "rgba(92,32,24,0.6)";
+    const revealColor = content.theme?.revealColor ?? "#5C2018";
+    const scratchOverlay = content.theme?.scratchOverlay ?? "/scratch-gold-DQrdz0lH.png";
+    const circleBg = content.theme?.circleBg ?? "#ffffff";
+    const confettiColors = content.theme?.confettiColors ?? ["#5C2018"];
 
     const handleCircleComplete = useCallback(() => {
         setCompleted((prev) => prev + 1);
@@ -187,7 +192,7 @@ export default function ScratchDate({ content = {} }) {
         const duration = popperDuration;
         const end = Date.now() + duration;
 
-        const colors = ["#5C2018"];
+        const colors = confettiColors;
 
         const frame = () => {
             confetti({
@@ -212,14 +217,15 @@ export default function ScratchDate({ content = {} }) {
         };
 
         frame();
-    }, [allRevealed, popperDuration]);
+    }, [allRevealed, popperDuration, confettiColors]);
 
     return (
         <section
             ref={sectionRef}
-            className="relative py-24 bg-[#faf8f5] flex flex-col items-center justify-center text-center h-[100dvh]"
+            className="relative py-24 flex flex-col items-center justify-center text-center h-[100dvh]"
+            style={{ background: sectionBg }}
         >
-            <p className="mb-6 text-xs tracking-wide text-[rgba(92,32,24,0.6)] font-lora">
+            <p className="mb-6 text-xs tracking-wide font-lora" style={{ color: hintColor }}>
                 {hint}
             </p>
 
@@ -229,7 +235,7 @@ export default function ScratchDate({ content = {} }) {
 
             <div className="flex justify-center gap-6 font-lora">
                 {dateParts.map((part) => (
-                    <ScratchCircle key={part} text={part} onComplete={handleCircleComplete} />
+                    <ScratchCircle key={part} text={part} onComplete={handleCircleComplete} overlayImage={scratchOverlay} circleBg={circleBg} />
                 ))}
             </div>
 
@@ -241,7 +247,7 @@ export default function ScratchDate({ content = {} }) {
                         transition={{ duration: 0.8 }}
                         className="mt-12"
                     >
-                        <p className="text-2xl text-[#5C2018] font-script">
+                        <p className="text-2xl font-script" style={{ color: revealColor }}>
                             {revealedLine}
                         </p>
                     </motion.div>

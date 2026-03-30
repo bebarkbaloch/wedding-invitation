@@ -11,6 +11,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Navigate to="/valima" replace />} />
         <Route path="/valima" element={<App />} />
         <Route path="/baraat" element={<App />} />
+        <Route path="/mehndi" element={<App />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import flowerBouquet from "../assets/flower-bouquet-Cd59z_hq.png"
 
 export default function ThankYou({ content = {} }) {
     const title = content.title ?? "Thank You";
@@ -7,7 +8,7 @@ export default function ThankYou({ content = {} }) {
     const caption = content.caption ?? "developed by Bebark";
 
     return (
-        <section className="py-20 bg-white flex items-center justify-center  flex-col px-6">
+        <section className="pt-20 bg-white flex items-center justify-center  flex-col px-6">
 
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -57,9 +58,15 @@ export default function ThankYou({ content = {} }) {
 
                 </div>
 
+                <img
+                    src={flowerBouquet}
+                    alt="Flower bouquet decoration"
+                    className="absolute left-1/2 -translate-x-1/2 -bottom-3 z-10 w-46 md:w-46 pointer-events-none"
+                />
+
             </motion.div>
 
-            <p className="text-xs text-primary/70 text-center mt-6 w-full">
+            <p className="text-xs text-primary/70 text-center mt-10 mb-2 w-full">
                 {caption}
             </p>
 

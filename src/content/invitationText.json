@@ -2,7 +2,8 @@
   "routes": {
     "homeRedirect": "/valima",
     "valima": "/valima",
-    "baraat": "/baraat"
+    "baraat": "/baraat",
+    "mehndi": "/mehndi"
   },
   "events": {
     "valima": {
@@ -74,6 +75,55 @@
         "title": "Thank You",
         "message": "For joining us on this special day. Your presence is the best gift we could receive.",
         "signature": "Hafsa & Bebark",
+        "caption": "developed by Bebark"
+      }
+    },
+    "mehndi": {
+      "theme": {
+        "primary": "#7c8264",
+        "secondary": "#e8e5d9",
+        "shell": "#0F1D0E"
+      },
+      "hero": {
+        "bismillah": "بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        "inviteLine": "You are warmly invited",
+        "groomName": "Bebark",
+        "brideName": "Hafsa",
+        "description": "to celebrate our Mehndi night with dholki, colors, and joy. Your presence will make the evening even more beautiful.",
+        "tapToOpen": "Tap to open",
+        "scroll": "Scroll",
+        "backdrop": "radial-gradient(circle at 20% 20%, #f8cf4d 0%, #cf9b26 30%, #2e5e2c 100%)"
+      },
+      "scratchDate": {
+        "hint": "Scratch to discover the Mehndi date",
+        "title": "Mehndi Reveal",
+        "dateParts": ["5", "April", "2026"],
+        "revealedLine": "Let the Mehndi festivities begin!",
+        "scroll": "Scroll",
+        "theme": {
+          "sectionBg": "linear-gradient(180deg, #fff7d6 0%, #f4e1a3 100%)",
+          "hintColor": "rgba(46,94,44,0.7)",
+          "revealColor": "#2E5E2C",
+          "circleBg": "#fffbea",
+          "confettiColors": ["#2E5E2C", "#D79A21", "#C54A2A"]
+        }
+      },
+      "countdown": {
+        "title": "Mehndi Countdown",
+        "target": "2026-04-05T20:00:00"
+      },
+      "venue": {
+        "intro": "The mehndi celebration will take place at",
+        "name": "Tipu Sultan Hall",
+        "addressLine1": "Bangalore Town Block A Kathiawar Society, Near Baloch Pull",
+        "addressLine2": "Karachi",
+        "dateText": "April 05, 2026",
+        "note": "Dholki & Dinner to Follow"
+      },
+      "thankYou": {
+        "title": "Shukriya",
+        "message": "Thank you for being part of our Mehndi night. Your smiles, duas, and presence are our greatest joy.",
+        "signature": "From the Groom's Family",
         "caption": "developed by Bebark"
       }
     }

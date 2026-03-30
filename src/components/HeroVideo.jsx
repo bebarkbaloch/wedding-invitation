@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 
 export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
     const videoRef = useRef(null);
+    const sectionRef = useRef(null);
     const bismillah = content.bismillah ?? "بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ";
     const inviteLine = content.inviteLine ?? "You are cordially invited";
     const groomName = content.groomName ?? "Bebark";
@@ -10,6 +11,10 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
     const description = content.description ?? "We would like to invite you to celebrate with us the valima ceremony. It would be an honor to have you present at this important moment.";
     const tapToOpen = content.tapToOpen ?? "Tap to open";
     const scrollText = content.scroll ?? "Scroll";
+    const backdrop = content.backdrop ?? "#1a0a0a";
+    const closedImage = content.closedImage ?? "/curtain-closed.jpg";
+    const openImage = content.openImage ?? "/curtain-open.jpg";
+    const videoSrc = content.videoSrc ?? "/curtain-video-optimized.mp4";
 
     const handleTap = () => {
         if (phase !== "closed") return;
@@ -27,8 +32,9 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
 
     return (
         <section
-             className={`relative h-[100dvh] w-full overflow-hidden`}
-            style={{ backgroundColor: "#1a0a0a" }}
+            ref={sectionRef}
+            className={`relative h-[100dvh] w-full overflow-hidden`}
+            style={{ background: backdrop }}
         >
             {/* LAYER 1: Text — always behind everything */}
             <motion.div
@@ -59,7 +65,7 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
             <AnimatePresence>
                 {phase === "ended" && (
                     <motion.img
-                        src="/curtain-open.jpg"
+                        src={openImage}
                         className="absolute inset-0 w-full h-full object-cover z-1"
                     />
                 )}
@@ -69,7 +75,7 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
             <AnimatePresence>
             <motion.video
                 ref={videoRef}
-                src="/curtain-video-optimized.mp4"
+                src={videoSrc}
                 muted
                 playsInline
                 onEnded={handleVideoEnd}
@@ -94,7 +100,7 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
                         onClick={handleTap}
                     >
                         <img
-                            src="/curtain-closed.jpg"
+                            src={closedImage}
                             className="absolute inset-0 z-30 w-full h-full object-cover"
                             alt="Curtain closed"
                         />
@@ -131,11 +137,20 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
                                         viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                        className="w-8 h-8 text-primary ml-1"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="w-8 h-8 text-primary"
                                     >
-                                        <polygon points="6 3 20 12 6 21 6 3" />
+                                        <path d="M18 11V5a2 2 0 1 0-4 0v6" />
+                                        <path d="M14 10V4a2 2 0 1 0-4 0v2" />
+                                        <path d="M10 10.5V6a2 2 0 1 0-4 0v8" />
+                                        <path d="M18 8a2 2 0 1 1 4 0v8a4 4 0 0 1-4 4h-8a4 4 0 0 1-4-4v-2" />
                                     </svg>
                                 </div>
                             </div>
@@ -160,10 +175,7 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center cursor-pointer"
             onClick={() => {
-                window.scrollTo({
-                    top: window.innerHeight,
-                    behavior: "smooth",
-                });
+                sectionRef.current?.nextElementSibling?.scrollIntoView({ behavior: "smooth" });
             }}
         >
             {/* Arrow animation */}

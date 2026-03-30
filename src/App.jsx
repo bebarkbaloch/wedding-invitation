@@ -2,6 +2,7 @@ import HeroVideo from "./components/HeroVideo"
 import ScratchDate from "./components/ScratchDate"
 import CountDown from "./components/CountDown"
 import Venue from "./components/Venue"
+import MehndiVenue from "./components/MehndiVenue"
 import ThankYou from "./components/ThankYou"
 import AudioButton from "./components/AudioButton"
 import {useRef,useState} from "react";
@@ -13,17 +14,20 @@ export default function App() {
     const [phase, setPhase] = useState("closed");
     const audioRef = useRef(null)
     const { pathname } = useLocation();
-    const eventKey = pathname.includes("baraat") ? "baraat" : "valima";
+    const eventKey = pathname.includes("mehndi") ? "mehndi" : pathname.includes("baraat") ? "baraat" : "valima";
     const content = invitationText.events[eventKey];
+    const primaryColor = content.theme?.primary ?? "#5C2018";
+    const secondaryColor = content.theme?.secondary ?? "#FAF8F5";
+    const shellColor = content.theme?.shell ?? "#000000";
 
     const playAudio = () => {
         audioRef.current?.play().catch(() => {})
     }
 
     return (
-        <main className="bg-black min-h-screen w-full">
+        <main className="min-h-screen w-full" style={{ backgroundColor: shellColor }}>
 
-            <div className="max-w-[375px] w-full bg-white relative mx-auto">
+            <div className="max-w-[375px] w-full bg-white relative mx-auto" style={{ "--color-primary": primaryColor, "--color-secondary": secondaryColor }}>
 
             <AudioButton audioRef={audioRef} />
 
@@ -43,7 +47,7 @@ export default function App() {
                 title={content.countdown.title}
             />
 
-            <Venue content={content.venue} />
+            {eventKey === "mehndi" ? <MehndiVenue content={content.venue} /> : <Venue content={content.venue} />}
 
             <ThankYou content={content.thankYou} />
              </>)}
