@@ -60,7 +60,7 @@ export default function MehndiVenue({ content = {} }) {
 
     return (
         <section className={`bg-[${content.theme?.secondary ?? "#e8e5d9"}]`}>
-            <div className="max-w-4xl mx-auto px-6 pt-16 pb-0">
+            <div className="max-w-4xl mx-auto px-6 pt-0 pb-0">
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ export default function MehndiVenue({ content = {} }) {
                                 <span className="text-lg uppercase tracking-widest text-primary">{name}</span>
                             </div>
 
-                            <div className="flex items-center justify-center gap-2 mt-3" style={{ color: `color-mix(in srgb, ${primaryColor} 70%, transparent)` }}>
+                            <div className="flex items-center justify-center gap-2 mt-3 text-primary/70" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>

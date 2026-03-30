@@ -36,6 +36,7 @@ export default function App() {
                 phase={phase}
                 setPhase={setPhase}
                 content={content.hero}
+                isMehndi={eventKey === "mehndi"}
             />
          
              {phase === "ended" && (

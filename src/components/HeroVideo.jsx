@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useRef } from "react";
 
-export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
+export default function HeroVideo({ onPlay,phase, setPhase, content = {}, isMehndi = false }) {
     const videoRef = useRef(null);
     const sectionRef = useRef(null);
     const bismillah = content.bismillah ?? "بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ";
@@ -41,9 +41,9 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: phase === "closed" ? 0 : 1 }}
                 transition={{ delay: phase === "playing" ? 2 : 0, duration: 0.9 }}
-                className="text-primary absolute inset-0 flex items-center flex-col gap-3 justify-center z-2"
+                className={`${isMehndi ? "top-[20%]" : ""} text-primary absolute inset-0 flex items-center flex-col gap-3 justify-center z-2`}
             >
-                <p className="uppercase text-center tracking-[0.3em] text-xs mb-4 font-lora max-w-[40%]">
+                <p className="uppercase text-center tracking-[0.3em] text-xs mb-4  font-lora max-w-[40%]">
                     {bismillah}
                 </p>
                 <p className="uppercase text-center tracking-[0.3em] text-xs mb-4 font-lora max-w-[45%]">
@@ -59,6 +59,13 @@ export default function HeroVideo({ onPlay,phase, setPhase, content = {} }) {
                 </div>
                 <p className="font-lora text-[11px] md:text-sm tracking-[0.12em] uppercase leading-relaxed text-center max-w-[65%] md:max-w-[70%] lg:max-w-[60%]"
                 >{description}</p>
+                {isMehndi && (
+                    <img
+                        src="/giphy.gif"
+                        alt="Mehndi celebration"
+                        className="w-28 md:w-32 -mt-12"
+                    />
+                )}
             </motion.div>
 
             {/* LAYER 2: Open curtain image — shown after video ends */}
